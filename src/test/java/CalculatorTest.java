@@ -41,4 +41,10 @@ public class CalculatorTest {
 
         assertEquals(7, calculator.add("5,2"));
     }
+
+    @Test
+    public void sumOfThreeNumbers() {
+
+        assertEquals(763, calculator.add("10,3,750"));
+    }
 }
