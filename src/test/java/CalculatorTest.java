@@ -35,4 +35,10 @@ public class CalculatorTest {
 
         assertEquals(3, calculator.add("1,2"));
     }
+
+    @Test
+    public void sumOfFiveAndTwoIsSeven() {
+
+        assertEquals(7, calculator.add("5,2"));
+    }
 }
