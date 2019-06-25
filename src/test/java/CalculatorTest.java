@@ -29,4 +29,10 @@ public class CalculatorTest {
 
         assertEquals(55, calculator.add("55"));
     }
+
+    @Test
+    public void sumOfOneAndTwoIsTree() {
+
+        assertEquals(3, calculator.add("1,2"));
+    }
 }
