@@ -65,4 +65,11 @@ public class CalculatorTest {
 
         assertEquals(3, calculator.add("//;\n1;2"));
     }
+
+
+    @Test
+    public void supportDelimiterLongThreeCharacters() {
+
+        assertEquals(18, calculator.add("//---\n7---11"));
+    }
 }
