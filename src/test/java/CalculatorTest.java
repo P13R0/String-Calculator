@@ -23,4 +23,10 @@ public class CalculatorTest {
 
         assertEquals(1, calculator.add("1"));
     }
+
+    @Test
+    public void sumOfFiftyFiveIsFiftyFive() {
+
+        assertEquals(55, calculator.add("55"));
+    }
 }
