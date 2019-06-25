@@ -53,4 +53,10 @@ public class CalculatorTest {
 
         assertEquals(53, calculator.add("1,24,9,16,3"));
     }
+
+    @Test
+    public void handleNewLinesCharacterBetweenNumbers() {
+
+        assertEquals(6, calculator.add("1\n2,3"));
+    }
 }
