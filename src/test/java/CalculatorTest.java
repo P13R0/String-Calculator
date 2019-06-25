@@ -10,4 +10,11 @@ public class CalculatorTest {
 
         assertEquals(0, calculator.add(""));
     }
+
+    @Test
+    public void sumForASingleNumberReturnTheSameNumber() {
+        Calculator calculator = new Calculator();
+
+        assertEquals(1, calculator.add("1"));
+    }
 }
