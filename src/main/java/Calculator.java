@@ -1,6 +1,6 @@
 public class Calculator {
 
-    public int add(String parameters) {
+    public int add(String parameters) throws Exception {
 
         if (parameters.isEmpty()) {
             return 0;
@@ -42,12 +42,15 @@ public class Calculator {
     }
 
 
-    private int getNumbersSum(String numbers, String delimiters) {
+    private int getNumbersSum(String numbers, String delimiters) throws Exception {
 
         int sum = 0;
 
         String[] separateNumbers = numbers.split(delimiters);
         for (String number:separateNumbers) {
+            if (number.contains("-")) {
+                throw new Exception("negatives not allowed: -1");
+            }
             sum += Integer.parseInt(number);
         }
 

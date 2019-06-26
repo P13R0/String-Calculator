@@ -13,63 +13,72 @@ public class CalculatorTest {
     }
 
     @Test
-    public void sumForAnEmptyStringReturnZero() {
+    public void sumForAnEmptyStringReturnZero() throws Exception {
 
         assertEquals(0, calculator.add(""));
     }
 
     @Test
-    public void sumForASingleNumberReturnTheSameNumber() {
+    public void sumForASingleNumberReturnTheSameNumber() throws Exception {
 
         assertEquals(1, calculator.add("1"));
     }
 
     @Test
-    public void sumOfFiftyFiveIsFiftyFive() {
+    public void sumOfFiftyFiveIsFiftyFive() throws Exception {
 
         assertEquals(55, calculator.add("55"));
     }
 
     @Test
-    public void sumOfOneAndTwoIsTree() {
+    public void sumOfOneAndTwoIsTree() throws Exception {
 
         assertEquals(3, calculator.add("1,2"));
     }
 
     @Test
-    public void sumOfFiveAndTwoIsSeven() {
+    public void sumOfFiveAndTwoIsSeven() throws Exception {
 
         assertEquals(7, calculator.add("5,2"));
     }
 
     @Test
-    public void sumOfThreeNumbers() {
+    public void sumOfThreeNumbers() throws Exception {
 
         assertEquals(763, calculator.add("10,3,750"));
     }
 
     @Test
-    public void sumOfFiveNumbers() {
+    public void sumOfFiveNumbers() throws Exception {
 
         assertEquals(53, calculator.add("1,24,9,16,3"));
     }
 
     @Test
-    public void handleNewLinesCharacterBetweenNumbers() {
+    public void handleNewLinesCharacterBetweenNumbers() throws Exception {
 
         assertEquals(6, calculator.add("1\n2,3"));
     }
 
     @Test
-    public void supportDifferentDelimiters() {
+    public void supportDifferentDelimiters() throws Exception {
 
         assertEquals(3, calculator.add("//;\n1;2"));
     }
 
-
     @Test
-    public void supportDelimiterLongThreeCharacters() {
+    public void supportDelimiterLongThreeCharacters() throws Exception {
 
         assertEquals(18, calculator.add("//---\n7---11"));
+    }
+
+    @Test
+    public void negativeNumbersThrowAnException() throws Exception {
+
+        try {
+            int sum = calculator.add("1,4,-1");
+        } catch (Exception e){
+            assertEquals("negatives not allowed: -1", e.getMessage());
+        }
     }
 }
