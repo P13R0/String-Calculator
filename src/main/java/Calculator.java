@@ -1,5 +1,6 @@
 public class Calculator {
 
+
     public int add(String parameters) throws Exception {
 
         if (parameters.isEmpty()) {
@@ -9,40 +10,54 @@ public class Calculator {
         String delimiters = getDelimiters(parameters);
         String numbers = getNumbers(parameters);
 
-        return getNumbersSum(numbers, delimiters);
+        return getSumNumbers(numbers, delimiters);
     }
 
 
-    private String getDelimiters(String text) {
+    private String getDelimiters(String parameters) {
 
         String delimiters = ",|\n";
 
-        if (hasChangedStandardDelimiter(text)) {
-            delimiters = text.substring(2,text.indexOf("\n"));
+        if (isChangedStandardDelimiter(parameters)) {
+            int indexStartDelimiter = 2;
+            int indexEndDelimiter = parameters.indexOf("\n");
+            delimiters = parameters.substring(indexStartDelimiter,indexEndDelimiter);
         }
 
         return delimiters;
     }
 
 
-    private boolean hasChangedStandardDelimiter(String text) {
-        return text.length() > 1 && text.substring(0,2).equals("//");
+    private boolean isChangedStandardDelimiter(String parameters) {
+
+        String declarationOfADelimiter = "//";
+        boolean isLongEnough = parameters.length() > declarationOfADelimiter.length();
+        boolean isDeclaredADelimiter = false;
+
+        if (isLongEnough) {
+            String declarationInParameters = parameters.substring(0,declarationOfADelimiter.length());
+            isDeclaredADelimiter = declarationInParameters.equals(declarationOfADelimiter);
+        }
+
+        return isDeclaredADelimiter;
     }
 
 
-    private String getNumbers(String text) {
+    private String getNumbers(String parameters) {
 
-        String numbers = text;
+        String numbers = parameters;
 
-        if (hasChangedStandardDelimiter(numbers)) {
-            numbers = numbers.substring(numbers.indexOf("\n")+1);
+        if (isChangedStandardDelimiter(parameters)) {
+            int indexEndDelimiter = parameters.indexOf("\n");
+            int indexStartNumbers = indexEndDelimiter + 1;
+            numbers = parameters.substring(indexStartNumbers);
         }
 
         return numbers;
     }
 
 
-    private int getNumbersSum(String numbers, String delimiters) throws Exception {
+    private int getSumNumbers(String numbers, String delimiters) throws Exception {
 
         int sum = 0;
 
@@ -50,13 +65,14 @@ public class Calculator {
         throwsAnExceptionIfNegativeNumbers(separateNumbers);
 
         for (String number:separateNumbers) {
-            if (Integer.parseInt(number) <= 1000) {
+            if (!isTooBigNumber(number)) {
                 sum += Integer.parseInt(number);
             }
         }
 
         return sum;
     }
+
 
     private void throwsAnExceptionIfNegativeNumbers(String[] numbers) throws Exception {
 
@@ -71,5 +87,10 @@ public class Calculator {
         if (!messageError.equals("negatives not allowed:")) {
             throw new Exception(messageError);
         }
+    }
+
+
+    private boolean isTooBigNumber(String number) {
+        return Integer.parseInt(number) > 1000;
     }
 }

@@ -97,4 +97,10 @@ public class CalculatorTest {
 
         assertEquals(2, calculator.add("2,1001"));
     }
+
+    @Test
+    public void ignoreMultipleNumbersBiggerThan1000() throws Exception {
+
+        assertEquals(1022, calculator.add("1000,5,1200,3000,17"));
+    }
 }
