@@ -47,17 +47,27 @@ public class Calculator {
         int sum = 0;
 
         String[] separateNumbers = numbers.split(delimiters);
+        throwsAnExceptionIfNegativeNumbers(separateNumbers);
+
         for (String number:separateNumbers) {
-            throwsAnExceptionIfNegativeNumber(number);
             sum += Integer.parseInt(number);
         }
 
         return sum;
     }
 
-    private void throwsAnExceptionIfNegativeNumber(String number) throws Exception {
-        if (number.contains("-")) {
-            throw new Exception("negatives not allowed: -1");
+    private void throwsAnExceptionIfNegativeNumbers(String[] numbers) throws Exception {
+
+        String messageError = "negatives not allowed:";
+
+        for (String number:numbers) {
+            if (number.contains("-")) {
+                messageError += " " + number;
+            }
+        }
+
+        if (!messageError.equals("negatives not allowed:")) {
+            throw new Exception(messageError);
         }
     }
 }

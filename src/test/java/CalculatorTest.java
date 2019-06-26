@@ -81,4 +81,14 @@ public class CalculatorTest {
             assertEquals("negatives not allowed: -1", e.getMessage());
         }
     }
+
+    @Test
+    public void multipleNegativeNumbersThrowAnException() throws Exception {
+
+        try {
+            int sum = calculator.add("-20,7,-16,13,-4");
+        } catch (Exception e){
+            assertEquals("negatives not allowed: -20 -16 -4", e.getMessage());
+        }
+    }
 }
