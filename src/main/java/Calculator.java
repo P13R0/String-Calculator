@@ -48,12 +48,16 @@ public class Calculator {
 
         String[] separateNumbers = numbers.split(delimiters);
         for (String number:separateNumbers) {
-            if (number.contains("-")) {
-                throw new Exception("negatives not allowed: -1");
-            }
+            throwsAnExceptionIfNegativeNumber(number);
             sum += Integer.parseInt(number);
         }
 
         return sum;
+    }
+
+    private void throwsAnExceptionIfNegativeNumber(String number) throws Exception {
+        if (number.contains("-")) {
+            throw new Exception("negatives not allowed: -1");
+        }
     }
 }
