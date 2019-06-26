@@ -50,7 +50,9 @@ public class Calculator {
         throwsAnExceptionIfNegativeNumbers(separateNumbers);
 
         for (String number:separateNumbers) {
-            sum += Integer.parseInt(number);
+            if (Integer.parseInt(number) <= 1000) {
+                sum += Integer.parseInt(number);
+            }
         }
 
         return sum;
