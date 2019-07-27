@@ -8,6 +8,10 @@ public class ParameterReader {
         if (isChangedStandardDelimiter(parameters)) {
             int indexStartDelimiter = 2;
             int indexEndDelimiter = parameters.indexOf("\n");
+            if (isALongDelimiter(parameters)) {
+                indexStartDelimiter = 3;
+                indexEndDelimiter = parameters.indexOf("]\n");
+            }
             delimiters = parameters.substring(indexStartDelimiter,indexEndDelimiter);
         }
 
@@ -28,19 +32,29 @@ public class ParameterReader {
         return numbers;
     }
 
+    private static boolean isALongDelimiter(String parameters) {
+
+        String declarationOfALongDelimiter = "//[";
+        return esempio(parameters, declarationOfALongDelimiter);
+    }
+
+    private static boolean esempio(String parameters, String declarationOfALongDelimiter) {
+        boolean isLongEnough = parameters.length() > declarationOfALongDelimiter.length();
+        boolean isDeclaredALongDelimiter = false;
+
+        if (isLongEnough) {
+            String declarationInParameters = parameters.substring(0,declarationOfALongDelimiter.length());
+            isDeclaredALongDelimiter = declarationInParameters.equals(declarationOfALongDelimiter);
+        }
+
+        return isDeclaredALongDelimiter;
+    }
 
     private static boolean isChangedStandardDelimiter(String parameters) {
 
+
         String declarationOfADelimiter = "//";
-        boolean isLongEnough = parameters.length() > declarationOfADelimiter.length();
-        boolean isDeclaredADelimiter = false;
-
-        if (isLongEnough) {
-            String declarationInParameters = parameters.substring(0,declarationOfADelimiter.length());
-            isDeclaredADelimiter = declarationInParameters.equals(declarationOfADelimiter);
-        }
-
-        return isDeclaredADelimiter;
+        return esempio(parameters, declarationOfADelimiter);
     }
 
 }

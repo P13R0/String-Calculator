@@ -4,8 +4,16 @@ public class NumericalOperations {
     public static int getSumNumbers(String numbers, String delimiters) throws Exception {
 
         int sum = 0;
+        String[] separateNumbers;
 
-        String[] separateNumbers = numbers.split(delimiters);
+        if (!delimiters.equals(",|\n")) {
+            numbers = numbers.replace(delimiters, ";");
+            separateNumbers = numbers.split(";");
+        }
+        else {
+            separateNumbers = numbers.split(delimiters);
+        }
+
         throwsAnExceptionIfNegativeNumbers(separateNumbers);
 
         for (String number:separateNumbers) {

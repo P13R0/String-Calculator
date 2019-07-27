@@ -69,7 +69,7 @@ public class CalculatorTest {
     @Test
     public void supportDelimiterLongThreeCharacters() throws Exception {
 
-        assertEquals(18, calculator.add("//---\n7---11"));
+        assertEquals(6, calculator.add("//[***]\n-1***2***3"));
     }
 
     @Test
@@ -87,6 +87,7 @@ public class CalculatorTest {
 
         try {
             int sum = calculator.add("-20,7,-16,13,-4");
+            fail();
         } catch (Exception e){
             assertEquals("negatives not allowed: -20 -16 -4", e.getMessage());
         }
