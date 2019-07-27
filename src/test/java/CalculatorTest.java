@@ -69,7 +69,7 @@ public class CalculatorTest {
     @Test
     public void supportDelimiterLongThreeCharacters() throws Exception {
 
-        assertEquals(6, calculator.add("//[***]\n-1***2***3"));
+        assertEquals(6, calculator.add("//[***]\n1***2***3"));
     }
 
     @Test

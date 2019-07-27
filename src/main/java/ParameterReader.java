@@ -35,26 +35,26 @@ public class ParameterReader {
     private static boolean isALongDelimiter(String parameters) {
 
         String declarationOfALongDelimiter = "//[";
-        return esempio(parameters, declarationOfALongDelimiter);
-    }
-
-    private static boolean esempio(String parameters, String declarationOfALongDelimiter) {
-        boolean isLongEnough = parameters.length() > declarationOfALongDelimiter.length();
-        boolean isDeclaredALongDelimiter = false;
-
-        if (isLongEnough) {
-            String declarationInParameters = parameters.substring(0,declarationOfALongDelimiter.length());
-            isDeclaredALongDelimiter = declarationInParameters.equals(declarationOfALongDelimiter);
-        }
-
-        return isDeclaredALongDelimiter;
+        return isDeclaredNewDelimiter(parameters, declarationOfALongDelimiter);
     }
 
     private static boolean isChangedStandardDelimiter(String parameters) {
 
-
         String declarationOfADelimiter = "//";
-        return esempio(parameters, declarationOfADelimiter);
+        return isDeclaredNewDelimiter(parameters, declarationOfADelimiter);
+    }
+
+    private static boolean isDeclaredNewDelimiter(String parameters, String declarationOfADelimiter) {
+
+        boolean isLongEnough = parameters.length() > declarationOfADelimiter.length();
+        boolean isDeclaredANewDelimiter = false;
+
+        if (isLongEnough) {
+            String declarationInParameters = parameters.substring(0,declarationOfADelimiter.length());
+            isDeclaredANewDelimiter = declarationInParameters.equals(declarationOfADelimiter);
+        }
+
+        return isDeclaredANewDelimiter;
     }
 
 }
