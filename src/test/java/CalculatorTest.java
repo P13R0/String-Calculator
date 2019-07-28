@@ -73,6 +73,12 @@ public class CalculatorTest {
     }
 
     @Test
+    public void supportDeclarationOfMultipleDelimiterLongeOneChar() throws Exception {
+
+        assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
     public void negativeNumbersThrowAnException() throws Exception {
 
         try {
