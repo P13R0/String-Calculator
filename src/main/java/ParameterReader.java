@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class ParameterReader {
 
-    private static String declarationOfADelimiter = "//";
+    private final static String declarationOfADelimiter = "//";
 
     public static ArrayList<String> getDelimiters(String parameters) {
 
@@ -37,8 +37,10 @@ public class ParameterReader {
         String numbers = parameters;
 
         if (isDeclaredNewDelimiter(parameters, declarationOfADelimiter)) {
+
             int indexEndDelimiter = parameters.indexOf("\n");
             int indexStartNumbers = indexEndDelimiter + 1;
+
             numbers = parameters.substring(indexStartNumbers);
         }
 

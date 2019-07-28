@@ -5,7 +5,7 @@ public class NumericalOperations {
 
     public static int getSumNumbers(String numbers, ArrayList<String> delimiters) throws Exception {
 
-        int sum = 0;
+        int sumNumbers = 0;
         final String standardDelimiter = ";";
         String[] separateNumbers;
 
@@ -19,11 +19,11 @@ public class NumericalOperations {
 
         for (String number:separateNumbers) {
             if (!isTooBigNumber(number)) {
-                sum += Integer.parseInt(number);
+                sumNumbers += Integer.parseInt(number);
             }
         }
 
-        return sum;
+        return sumNumbers;
     }
 
 
