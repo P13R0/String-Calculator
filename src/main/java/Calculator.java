@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Calculator {
 
 
@@ -7,7 +9,7 @@ public class Calculator {
             return 0;
         }
 
-        String delimiters = ParameterReader.getDelimiters(parameters);
+        ArrayList<String> delimiters = ParameterReader.getDelimiters(parameters);
         String numbers = ParameterReader.getNumbers(parameters);
         int sumNumbers = NumericalOperations.getSumNumbers(numbers, delimiters);
 

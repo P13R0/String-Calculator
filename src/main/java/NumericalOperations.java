@@ -1,18 +1,19 @@
+import java.util.ArrayList;
+
 public class NumericalOperations {
 
 
-    public static int getSumNumbers(String numbers, String delimiters) throws Exception {
+    public static int getSumNumbers(String numbers, ArrayList<String> delimiters) throws Exception {
 
         int sum = 0;
+        final String standardDelimiter = ";";
         String[] separateNumbers;
 
-        if (!delimiters.equals(",|\n")) {
-            numbers = numbers.replace(delimiters, ";");
-            separateNumbers = numbers.split(";");
+        for (String delimiter:delimiters) {
+            numbers = numbers.replace(delimiter, standardDelimiter);
         }
-        else {
-            separateNumbers = numbers.split(delimiters);
-        }
+
+        separateNumbers = numbers.split(standardDelimiter);
 
         throwsAnExceptionIfNegativeNumbers(separateNumbers);
 

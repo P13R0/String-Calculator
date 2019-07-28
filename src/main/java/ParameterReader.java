@@ -1,26 +1,32 @@
+import java.util.ArrayList;
+
 public class ParameterReader {
 
     private static String declarationOfADelimiter = "//";
-    private static String declarationOfALongDelimiter = "//[";
 
-    public static String getDelimiters(String parameters) {
+    public static ArrayList<String> getDelimiters(String parameters) {
 
-        String delimiters;
-        String standardDelimiters = ",|\n";
+        ArrayList<String> delimiters = new ArrayList<String>();
 
-        delimiters = standardDelimiters;
+        delimiters.add(",");
+        delimiters.add("\n");
 
         if (isDeclaredNewDelimiter(parameters, declarationOfADelimiter)) {
 
             int indexStartDelimiter = declarationOfADelimiter.length();
             int indexEndDelimiter = parameters.indexOf("\n");
 
-            if (isDeclaredNewDelimiter(parameters, declarationOfALongDelimiter)) {
+            parameters = parameters.substring(indexStartDelimiter,indexEndDelimiter);
 
-                indexStartDelimiter = declarationOfALongDelimiter.length();
-                indexEndDelimiter = parameters.indexOf("]\n");
+            while (parameters.contains("[")) {
+
+                indexStartDelimiter = parameters.indexOf("[")+1;
+                indexEndDelimiter = parameters.indexOf("]");
+
+                delimiters.add(parameters.substring(indexStartDelimiter, indexEndDelimiter));
+                parameters = parameters.substring(indexEndDelimiter+1);
             }
-            delimiters = parameters.substring(indexStartDelimiter,indexEndDelimiter);
+
         }
 
         return delimiters;
